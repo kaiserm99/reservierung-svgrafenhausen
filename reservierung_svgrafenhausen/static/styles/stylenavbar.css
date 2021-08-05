@@ -1,0 +1,149 @@
+:root {
+  --nav-button-color: #fff;
+  --link-h-color: white;
+  --nav-height: 6rem;
+  --nav-color: #1d1e1f;
+}
+  
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+  
+html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+  
+/* Style the Button of the Navbar, which appears when it is in mobile version */
+.nav-button{position:fixed;padding:2rem 2rem;background-color:var(--nav-button-color);right:1rem;border-radius:1rem;cursor:pointer;z-index:10;opacity:0}.bar,.bar::after,.bar::before{content:"";position:absolute;width:70%;height:.2rem;background:#000;top:0;left:0;right:0;bottom:0;margin:auto;transition:all .7s;border-radius:1rem}.bar::before{width:100%;height:100%;top:-1.5rem}.bar::after{width:100%;height:100%;top:1.5rem}.nav-active .bar{background-color:transparent}.nav-active .bar::before{transform:rotate(45deg);top:0}.nav-active .bar::after{transform:rotate(-45deg);top:0}
+/* Burger End */
+  
+.nav-main {
+  position: fixed;
+  background-color: var(--nav-color);
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 10000;
+}
+  
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+  width: 85%;
+}
+  
+.nav-logo {
+  height: 90%;
+  background: no-repeat center center fixed;
+  background-size: cover;
+  cursor: pointer;
+}
+  
+.nav-links {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  list-style: none;
+}
+  
+.nav-link {
+  height: 100%;
+  display: flex;
+  position: relative;
+  font-size: 1.3rem;
+  align-items: center;
+  opacity: 0.4;
+  cursor: default;
+}
+  
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  background: var(--link-h-color);
+  height: 0.1rem;
+  border-radius: 2rem;
+  transition: all 0.7s;
+}
+  
+.nav-link.reached:hover::after, .nav-link.reached:focus::after{
+  width: 85%;
+}
+  
+.nav-link.reached {
+  opacity: 1;
+  cursor: pointer;
+}
+  
+/* The Copyright can only bee seen in mobile view */
+#nav-copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+}
+  
+/* Make sure the Mobile Version is styled as intended */
+@media only screen and (max-width: 1150px) {
+  :root {
+    --nav-height: 6rem;
+  }
+  
+  .nav-main {
+    overflow-x: hidden;
+  }
+  
+  .nav-button {
+    transition: opacity 0.7s;
+    opacity: 1;
+  }
+  
+  .nav-links {
+    position: fixed;
+    display: block;
+    top: var(--nav-height);
+    right: 0;
+    z-index: 100;
+    height: calc(var(--vh, 1vh) * 100 - var(--nav-height));
+    background-color: black;
+    text-align: center;
+    transform: translateX(100%);
+    transition: all 0.8s ease-in-out;
+    width: 70%;
+  }
+  
+  .nav-links.nav-active {
+    transform: translateX(0);
+  }
+  
+  .nav-link {
+    height: 12%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid white;
+    font-size: 1.5rem;
+    margin: auto;
+  }
+  
+  #nav-copyright {
+    opacity: 1;
+  }
+}

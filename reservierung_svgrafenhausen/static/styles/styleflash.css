@@ -1,0 +1,59 @@
+:root {
+  --error-color-alpha: rgba(244, 67, 54, 0.9);
+  --error-color: rgb(244, 67, 54);
+
+  --success-color-alpha: rgba(25, 211, 25, 0.8);
+  --success-color: rgb(25, 211, 25);
+}
+
+.flash-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  font-size: 16px;
+}
+
+.flash-error {
+  margin-top: 0.3rem;
+  padding:1.5rem;
+  background-color: var(--error-color-alpha);
+  border: 1px solid var(--error-color);
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0.05rem 0.05rem 0.2rem 0.05rem #888888;
+}
+
+.flash-success {
+  margin-top: 0.3rem;
+  padding:1.5rem;
+  background-color: var(--success-color-alpha);
+  border: 1px solid var(--success-color);
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0.05rem 0.05rem 0.2rem 0.05rem #888888;
+}
+
+.flash-button {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.flash-button:hover {
+  color: black;
+}
+
+/* Smartphone optimazation */
+@media only screen and (max-width: 900px) {
+
+  .flash-wrapper {
+    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

@@ -1,6 +1,17 @@
-from website import create_app
+#!/usr/bin/python3
 
-app = create_app()
+SERVER = True
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if SERVER:
+    import sys
+    import logging
+    logging.basicConfig(stream=sys.stderr)
+    sys.path.insert(0, "/var/www/reservierung_svgrafenhausen/")
+
+
+from reservierung_svgrafenhausen import create_app
+
+application = create_app()
+
+if not SERVER:
+    application.run(debug=True)

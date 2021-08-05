@@ -3,6 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from .getSeatNumber import get_seat_number
 
 import re
 REGEX = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -28,13 +29,14 @@ def login():
 
     return render_template("login.html", user=current_user, active="login")
 
-@auth.route('/sign_up', methods=['GET', 'POST'])
+@auth.route('/home', methods=['GET', 'POST'])
+@auth.route('/', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
 
-        first_name = request.form.get('first_name')
-        second_name = request.form.get('second_name')
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
 
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
@@ -57,7 +59,7 @@ def sign_up():
             valid = False
 
         # Check if the given second name is valid
-        if (len(second_name) <= 2):
+        if (len(last_name) <= 2):
             flash("Eine ungültiger Nachnamen wurde eingegeben. Der Nachnamen muss mindestens drei (3) Buchstaben enthalten!", category="error")
             valid = False
 
@@ -75,7 +77,7 @@ def sign_up():
         # If all the checks have passed -> create user in the DB
         if (valid):
             # Create the new user based on the parameters
-            new_user = User(email=email, first_name=first_name, second_name=second_name, password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1, method='sha256'))
 
             # Add the user to the database
             db.session.add(new_user)
@@ -86,7 +88,9 @@ def sign_up():
 
             flash('Account created!', category='success')
 
-    return render_template("sign_up.html", user=current_user, active="sign_up")
+    s = get_seat_number()
+
+    return render_template("home.html", seat_number=s, user=current_user)
 
 
 @auth.route('/logout')

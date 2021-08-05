@@ -13,5 +13,5 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(256), unique=True)
     password = db.Column(db.String(256))
     first_name = db.Column(db.String(256))
-    second_name = db.Column(db.String(256))
+    last_name = db.Column(db.String(256))
     events = db.relationship('Event')

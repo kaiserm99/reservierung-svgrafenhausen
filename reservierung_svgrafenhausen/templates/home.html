@@ -2,5 +2,46 @@
 {% block title %}Home{% endblock %} 
 
 {% block content %}
-    <h1 align="center">Test</h1>
+  <h1>Es sind noch <span id="seat-number">{{ seat_number }}</span> Sitzplätze frei!</h1>
+
+  <div class="main-login">
+    <form class="form-login" method="POST">
+
+      <div class="title">Wilkommen</div>
+      <div class="subtitle">Bitte erstellen Sie einen Account!</div>
+        
+      <div class="input-container ic1">
+        <input id="firstname" class="input" type="text" name="firstName" placeholder="Vorname" />
+        <div class="cut cut-short"></div>
+        <label for="firstname" class="placeholder">Vorname</label>
+      </div>
+        
+      <div class="input-container ic2">
+        <input id="lastname" class="input" type="text" name="lastName" placeholder="Nachname" />
+        <div class="cut cut-short"></div>
+        <label for="lastname" class="placeholder">Nachname</label>
+      </div>
+        
+      <div class="input-container ic2">
+        <input id="email" class="input" type="email" name="email" placeholder="E-Mail Adresse" />
+        <div class="cut cut-short"></div>
+        <label for="email" class="placeholder">E-Mail</label>
+      </div>
+
+      <div class="input-container ic2">
+        <input id="password1" class="input" type="password" name="password1" placeholder="Passwort" />
+        <div class="cut cut-short"></div>
+        <label for="password1" class="placeholder">Passwort</label>
+      </div>
+
+      <div class="input-container ic2">
+        <input id="password2" class="input" type="password" name="password2" placeholder="Passwort wiederholen" />
+        <div class="cut"></div>
+        <label for="password2" class="placeholder">Passwort wiederholen</label>
+      </div>
+          
+      <button type="text" class="submit">Registrieren</button>
+    </form>
+  </div>
+    
 {% endblock %}
