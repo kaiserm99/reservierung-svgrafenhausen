@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-SERVER = True
+SERVER = False
 
 if SERVER:
     import sys
