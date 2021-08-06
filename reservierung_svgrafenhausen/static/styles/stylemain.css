@@ -1,11 +1,11 @@
 .margin-wrapper {
-  margin-top: calc(var(--nav-height) + 3rem);
+  margin-top: calc(var(--nav-height) + 0.3em);
 }
 
 
 .main-content {
   display: flex;
-  margin: auto;
+  margin-top: 2em;
   align-items: center;
   flex-direction: column;
 }
@@ -170,6 +170,8 @@
 
 .switch {
   color: #08d;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

@@ -14,7 +14,7 @@
 }
 
 .flash-error {
-  margin-top: 0.3rem;
+  margin-top: 0.3em;
   padding:1.5rem;
   background-color: var(--error-color-alpha);
   border: 1px solid var(--error-color);
@@ -23,12 +23,8 @@
 }
 
 .flash-success {
-  margin-top: 0.3rem;
-  padding:1.5rem;
   background-color: var(--success-color-alpha);
   border: 1px solid var(--success-color);
-  transition: transform 0.2s ease-in-out;
-  box-shadow: 0.05rem 0.05rem 0.2rem 0.05rem #888888;
 }
 
 .flash-button {

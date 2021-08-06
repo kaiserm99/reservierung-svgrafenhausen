@@ -2,12 +2,16 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils.functions import database_exists
-from os import path
 
+SERVER = True
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
-DB_PATH = f"/tmp/{DB_NAME}"
+
+if SERVER:
+    DB_PATH = f"/home/{DB_NAME}"
+else:
+    DB_PATH = f"/tmp/{DB_NAME}"
 
 
 def create_app():
