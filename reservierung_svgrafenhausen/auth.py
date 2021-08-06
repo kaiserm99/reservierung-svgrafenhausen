@@ -10,6 +10,7 @@ REGEX = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 auth = Blueprint('auth', __name__)
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -28,6 +29,7 @@ def login():
             flash('Die eingegebene E-Mail Adresse ist nicht vorhanden. Versuchen Sie eine andere oder registrieren Sie sich!', category='error')
 
     return render_template("login.html", user=current_user, active="login")
+
 
 @auth.route('/home', methods=['GET', 'POST'])
 @auth.route('/', methods=['GET', 'POST'])

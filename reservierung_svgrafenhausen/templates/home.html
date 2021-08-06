@@ -5,7 +5,7 @@
   <h1>Es sind noch <span id="seat-number">{{ seat_number }}</span> Sitzplätze frei!</h1>
 
   <div class="main-login">
-    <form class="form-login" method="POST">
+    <form class="form-register" method="POST">
 
       <div class="title">Wilkommen</div>
       <div class="subtitle">Bitte erstellen Sie einen Account!</div>
@@ -42,10 +42,39 @@
           
       <button type="text" class="submit">Registrieren</button>
 
-      <div class="login-footer">
-        Schon angemeldet? Dann drücken Sie <span class="login-switch" >hier</span>!
+      <div class="footer">
+        Schon angemeldet? Dann drücken Sie <a id="switch-register" class="switch" href="#">hier</a>!
       </div>
+
     </form>
+
+    <form id="form-login" class="form-register form-login">
+      <div class="title">Wilkommen</div>
+      <div class="subtitle">Bitte melden Sie sich an!</div>
+
+      <div class="input-container ic1">
+        <input id="email" class="input" type="email" name="email" placeholder="E-Mail Adresse" />
+        <div class="cut cut-short"></div>
+        <label for="email" class="placeholder">E-Mail</label>
+      </div>
+
+      <div class="input-container ic2">
+        <input id="password" class="input" type="password" name="password" placeholder="Passwort" />
+        <div class="cut cut-short"></div>
+        <label for="password" class="placeholder">Passwort</label>
+      </div>
+
+      <button type="text" class="submit">Anmelden</button>
+
+      <div class="footer">
+        Noch nicht registriert? Dann drücken Sie <a id="switch-login" class="switch" href="#">hier</a>!
+      </div>
+
+    </form>
+
+    
+
   </div>
+  
     
 {% endblock %}
