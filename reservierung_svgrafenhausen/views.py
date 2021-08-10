@@ -22,7 +22,7 @@ def submitTickets():
 
     # To be completley sure that no one will change this number
     if ticket_count < 1 or ticket_count > 10:
-        flash("Irgendwas ist schief gelaufen, bitte versuchen Sie es erneut", category='error')
+        flash("Der gewünschte Wert ist nicht zwischen einem (1) und zehn (10) Tickets oder keine Zahl!", category='error')
         return jsonify(False)
 
     

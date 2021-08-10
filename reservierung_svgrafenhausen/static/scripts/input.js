@@ -10,7 +10,6 @@ let ticketMain = document.querySelector("#main-tickets");
   
     var min = el.getAttribute("min") || false;
     var max = el.getAttribute("max") || false;
-  
 
     dec.addEventListener('click', () => {
       var value = el.value;

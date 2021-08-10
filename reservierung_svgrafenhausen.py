@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-SERVER = True
+SERVER = False
 
 if SERVER:
     import sys
@@ -23,7 +23,7 @@ def setup():
     admin1 = User(first_name="SV", 
                   last_name="Grafenhausen",
                   email="549829493@svgrafenhausen.de",
-                  password=generate_password_hash("Svg1921$", method='sha256'),
+                  password=generate_password_hash("XXXXXX", method='sha256'),
                   admin=True)
 
     user1 = User.query.filter_by(email=admin1.email).first()
