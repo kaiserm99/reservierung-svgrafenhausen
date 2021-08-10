@@ -32,7 +32,6 @@ def create_app():
     create_database(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.home'
     login_manager.init_app(app)
 
     @login_manager.user_loader

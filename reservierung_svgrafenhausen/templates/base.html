@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylenavbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylemain.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styleflash.css') }}">
+    {% block links %}
+    <!-- Document related links -->
+    {% endblock %}
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
@@ -58,15 +61,9 @@
     </div>
 
     <!-- Own scripts -->
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='scripts/index.js') }}"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='scripts/navbar.js') }}"
-    ></script>
-
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/navbar.js') }}"></script>
+    {% block scripts %}
+    <!-- Document related scripts-->
+    {% endblock %}
   </body>
 </html>

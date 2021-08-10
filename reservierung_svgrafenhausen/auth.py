@@ -11,30 +11,11 @@ REGEX = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        user = User.query.filter_by(email=email).first()
-        if user:
-            if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
-                login_user(user, remember=True)
-                return redirect(url_for('views.home'))
-            else:
-                flash('Das eingegebene Passwort ist falsch. Versuchen Sie es erneut!', category='error')
-        else:
-            flash('Die eingegebene E-Mail Adresse ist nicht vorhanden. Versuchen Sie eine andere oder registrieren Sie sich!', category='error')
-
-    return render_template("login.html", user=current_user, active="login")
-
-
 @auth.route('/home', methods=['GET', 'POST'])
 @auth.route('/', methods=['GET', 'POST'])
 def sign_up():
-    if request.method == 'POST':
+    
+    if request.method == 'POST' and 'password1' in request.form and 'password2' in request.form:
         email = request.form.get('email')
 
         first_name = request.form.get('firstName')
@@ -47,7 +28,7 @@ def sign_up():
 
         # Check if the user with this email is already in the database. If so -> throw error message
         if User.query.filter_by(email=email).first() is not None:
-            flash("Diese E-Mail Adresse wird bereits verwendet. Loggen Sie sich ein, oder versuchen Sie eine andere Adresse!", category="error")
+            flash("Diese E-Mail Adresse wird bereits verwendet. Loggen Sie sich ein, oder versuchen Sie eine andere E-Mail Adresse!", category="error")
             valid = False
 
         # Check if the given E-Mail adress is valid
@@ -90,6 +71,26 @@ def sign_up():
 
             flash('Account created!', category='success')
 
+            return redirect(url_for('views.reservierung'))
+
+
+    elif request.method == 'POST' and 'password' in request.form:
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category='success')
+                login_user(user, remember=True)
+
+                return redirect(url_for('views.reservierung'))
+
+            else:
+                flash('Das eingegebene Passwort ist falsch. Versuchen Sie es erneut!', category='error')
+        else:
+            flash('Die eingegebene E-Mail Adresse ist nicht vorhanden. Versuchen Sie eine andere oder registrieren Sie sich!', category='error')
+
     s = get_seat_number()
 
     return render_template("home.html", seat_number=s, user=current_user)
@@ -99,4 +100,5 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    print("Test")
+    return redirect(url_for('auth.sign_up'))

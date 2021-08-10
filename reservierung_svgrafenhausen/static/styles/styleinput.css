@@ -1,0 +1,132 @@
+body {
+  height: 120vh;
+}
+
+
+.margin-wrapper {
+  margin-top: calc(var(--nav-height) + 2em);
+}
+
+
+.input-main {
+  margin-top: 0.5em;
+  height: 3em;
+  user-select: none;
+  width: 70%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 2em;
+}
+
+.input-number {
+  position: relative;
+  width: 30%;
+  color: #333C48;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+  border: 1px solid #ccc;
+  height: 100%;
+}
+
+.input-number-decrement,
+.input-number-increment {
+  width: 8%;
+  background-color: #8498a7;
+  color: #444;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-number-decrement:active,
+.input-number-increment:active {
+  background: #a8c0d3;
+  border: 0.2em solid black;
+}
+
+
+.input-number-decrement {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.input-number-increment {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.headline {
+  margin-top: 1em;
+}
+
+#main-tickets {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ticket {
+  width: 70%;
+  height: 5em;
+  background-color: rgb(228, 228, 228);
+  border: 0.1em solid black;
+  border-radius: 0.6em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  font-size: 1.5em;
+  margin-bottom: 0.4em;
+}
+
+
+
+/* Smartphone optimazation */
+@media only screen and (max-width: 900px) {
+
+  .input-main {
+    width: 80%;
+    height: 2.5em;
+    font-size: 1.7em;
+  }
+
+  .input-number {
+    width: 40%;
+  }
+
+  .input-number-decrement,
+  .input-number-increment {
+    width: 13%;
+  }
+
+}
+
+/* Smartphone optimazation */
+@media only screen and (max-width: 600px) {
+
+  .input-main {
+    width: 95%;
+    font-size: 1.5em;
+  }
+
+
+  .input-number-decrement,
+  .input-number-increment {
+    width: 15%;
+  }
+
+}

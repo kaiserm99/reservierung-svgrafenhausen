@@ -1,9 +1,12 @@
 {% extends "base.html" %} 
-{% block title %}Home{% endblock %} 
+{% block title %}Startseite Reservierung{% endblock %} 
 
 {% block content %}
-  <h1>Es sind noch <span id="seat-number">{{ seat_number }}</span> Sitzplätze frei!</h1>
 
+  <h1>Es sind noch <span id="seat-number">{{ seat_number }}</span> Sitzplätze frei!</h1>
+  {% if user.is_authenticated %}
+  <h1>Es sind noch <span>{{ user.first_name }}</span> Sitzplätze frei!</h1>
+  {% endif %}
   <div class="main-login">
     <form class="form-register" method="POST">
 
@@ -43,12 +46,12 @@
       <button type="text" class="submit">Registrieren</button>
 
       <div class="footer">
-        Schon angemeldet? Dann drücken Sie <a id="switch-register" class="switch">hier</a>!
+        Schon registriert? Dann drücken Sie <a id="switch-register" class="switch">hier</a>!
       </div>
 
     </form>
 
-    <form id="form-login" class="form-register form-login">
+    <form id="form-login" class="form-register form-login" method="POST">
       <div class="title">Wilkommen</div>
       <div class="subtitle">Bitte melden Sie sich an!</div>
 
@@ -75,6 +78,9 @@
     
 
   </div>
-  
-    
+{% endblock %}
+
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 {% endblock %}

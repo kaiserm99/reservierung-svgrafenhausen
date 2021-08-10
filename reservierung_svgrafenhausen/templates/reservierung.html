@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+
+{% block links %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styleinput.css') }}">
+{% endblock %}
+
+{% block title %}Reservierung{% endblock %} 
+
+{% block content %}
+
+  <h1>Anzahl auswählen:</h1>
+
+  <div class="input-main">
+    <span id="decrement"  class="input-number-decrement">–</span>
+    <input id="input-number" class="input-number" type="text" value="1" min="1" max="10">
+    <span id="increment" class="input-number-increment">+</span>
+  </div>
+
+  <h1 class="headline">Ihre Tickets:</h1>
+  
+  <div id="main-tickets">
+
+    <div class="ticket">
+      <span>Ticket 1</span>
+      <div>
+        <span>&#128993;</span>
+        <span>Nicht bestäigt</span>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/input.js') }}"></script>
+{% endblock %}
