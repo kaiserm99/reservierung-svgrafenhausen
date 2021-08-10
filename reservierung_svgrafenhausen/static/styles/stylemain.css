@@ -1,7 +1,10 @@
-.margin-wrapper {
-  margin-top: calc(var(--nav-height) + 0.3em);
+body {
+  height: 100vh;
 }
 
+.margin-wrapper {
+  margin-top: calc(var(--nav-height) + 2em);
+}
 
 .main-content {
   display: flex;
@@ -35,6 +38,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .form-login {
@@ -182,6 +186,10 @@
     width: 80%;
   }
 
+  .form-register {
+    padding: 2em;
+  }
+
 }
 
 /* Smartphone optimazation */
@@ -189,6 +197,10 @@
 
   .main-login {
     width: 95%;
+  }
+
+  .form-register {
+    padding: 1em;
   }
 
 }

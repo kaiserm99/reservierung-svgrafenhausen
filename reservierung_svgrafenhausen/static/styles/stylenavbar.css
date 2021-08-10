@@ -41,7 +41,7 @@ html {
 }
   
 .nav-logo {
-  height: 90%;
+  height: calc(var(--nav-height) - 0.8em);
   background: no-repeat center center fixed;
   background-size: cover;
   cursor: pointer;
@@ -88,6 +88,11 @@ html {
 .nav-link.reached {
   opacity: 1;
   cursor: pointer;
+}
+
+.nav-link-link {
+  text-decoration: none;
+  color: white;
 }
   
 /* The Copyright can only bee seen in mobile view */

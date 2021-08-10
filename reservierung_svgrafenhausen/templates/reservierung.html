@@ -6,31 +6,61 @@
 
 {% block title %}Reservierung{% endblock %} 
 
+{% block navbar %}
+  <li class='nav-link reached'> <a class="nav-link-link" href="/">Registration / Anmeldung</a> </li>
+  <li class='nav-link reached'> <a class="nav-link-link" href="/reservierung">Tickets auswählen</a> </li>
+  <li class='nav-link reached'> <a class="nav-link-link" href="/logout">Abmelden</a> </li>
+{% endblock %}
+
 {% block content %}
 
   <h1>Anzahl auswählen:</h1>
 
   <div class="input-main">
     <span id="decrement"  class="input-number-decrement">–</span>
-    <input id="input-number" class="input-number" type="text" value="1" min="1" max="10">
+    <input id="input-number" class="input-number" type="text" value="0" min="0" max="10">
     <span id="increment" class="input-number-increment">+</span>
   </div>
 
-  <h1 class="headline">Ihre Tickets:</h1>
+  <h1 class="headline">Aktuelle Tickets:</h1>
   
-  <div id="main-tickets">
-
-    <div class="ticket">
-      <span>Ticket 1</span>
-      <div>
-        <span>&#128993;</span>
-        <span>Nicht bestäigt</span>
-      </div>
-    </div>
+  <div id="main-tickets" class="tickets">
 
   </div>
 
+  <div>
+    <button id="submit-button" onclick='submitTicketCount()'>Bestätigen</button>
+  </div>
+
+  {% if user.events|length > 0 %}
+    <h1 class="headline">Vorgemerkte Tickets:</h1>
+
+    <div class="tickets">
+      {% for event in user.events %}
+        {% if event.confirmed %}
+          <div class="ticket">
+            <span>Ticket {{ event.id }}</span>
+            <div>
+              <span>&#128994;</span>
+              <span>Bestätigt</span>
+            </div>
+          </div>
+        {% else %}
+          <div class="ticket">
+            <span>Ticket {{ event.id }}</span>
+            <div>
+              <span>&#128308;</span>
+              <span>Nicht bestätigt</span>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
 {% endblock %}
+
 
 {% block scripts %}
   <script type="text/javascript" src="{{ url_for('static', filename='scripts/input.js') }}"></script>

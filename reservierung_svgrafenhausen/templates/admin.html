@@ -1,0 +1,47 @@
+{% extends "base.html" %} 
+
+{% block links %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styleadmin.css') }}">
+{% endblock %}
+
+{% block title %}Admin Verwaltung{% endblock %} 
+
+{% block navbar %}
+  <li class='nav-link reached'> <a class="nav-link-link" href="/logout">Abmelden</a> </li>
+{% endblock %}
+
+{% block content %}
+
+{% if user.admin %}
+  <h1 class="headline">Alle Tickets:</h1>
+
+  <div class="tickets">
+    {% for event, user in events %}
+      {% if event.confirmed %}
+        <div class="ticket">
+          <span>{{ user.first_name }} {{ user.last_name }}, ID #{{ event.id }}</span>
+          <div>
+            <span>&#128994;</span>
+            <span>Bestätigt</span>
+          </div>
+        </div>
+      {% else %}
+        <div class="ticket">
+          <span>{{ user.first_name }} {{ user.last_name }}, {{ event.created_date }}, ID #{{ event.id }}</span>
+          <div>
+            <button onclick='confirmTicket("{{ event.id }}")'>Freigeben</button>
+            <button onclick='deleteTicket("{{ event.id }}")'>Löschen</button>
+            <span id="red-dot">&#128308;</span>
+            <span>Nicht bestätigt</span>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin.js') }}"></script>
+{% endblock %}

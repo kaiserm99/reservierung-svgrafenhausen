@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylenavbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylemain.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styleflash.css') }}">
@@ -19,12 +20,12 @@
         <div class='nav-button'>
           <div class='bar'></div>
         </div>
-        <img class='nav-logo' src="{{ url_for('static', filename='img/svg_logo_homepage.jpg') }}" alt=''>
+        <a href="/">
+          <img class='nav-logo' src="{{ url_for('static', filename='img/svg_logo_homepage.jpg') }}" alt=''>
+        </a>
         <ul class='nav-links'>
-          <li class='nav-link reached'>1. Registration / Anmelden</li>
-          <li class='nav-link'>2. Plätze auswählen</li>
-          <li class='nav-link'>3. Bestätigen</li>
-          <li class='nav-link'>4. E-Mail Code eingeben</li>
+          {% block navbar %}
+          {% endblock %}
           <li id='nav-copyright'> <p>Copyright &copy; 2021 by<br>SV Grafenhausen</p></li>
         </ul>
       </div>

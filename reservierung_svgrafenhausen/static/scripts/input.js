@@ -50,7 +50,7 @@ function getTicketElement() {
   span2.innerHTML = "&#128993;";
 
   let span3 = document.createElement('span');
-  span3.innerHTML = " Nicht bestäigt";
+  span3.innerHTML = " Nicht bestätigt";
 
   innerDiv.appendChild(span2);
   innerDiv.appendChild(span3);
@@ -59,6 +59,17 @@ function getTicketElement() {
 
   return div;
 }
+
+
+
+function submitTicketCount() {
+  fetch("/submit-tickets", {
+    method: "POST",
+    body: JSON.stringify({ "ticket-count": ticketMain.childElementCount }),
+  })
+  .then((resp) => window.location.href = "/reservierung");
+}
+
 
 
 // &#128994; --> Grün

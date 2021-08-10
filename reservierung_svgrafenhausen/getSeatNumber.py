@@ -16,3 +16,10 @@ def set_seat_number(number):
     f = open(abs_file_path, "w")
     f.write(str(number))
     f.close()
+
+def decrement_seat_number(number):
+    res = get_seat_number()
+    
+    f = open(abs_file_path, "w")
+    f.write(str(int(res) - number))
+    f.close()

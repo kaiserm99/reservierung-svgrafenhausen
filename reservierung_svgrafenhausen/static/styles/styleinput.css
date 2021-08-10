@@ -71,7 +71,7 @@ body {
   margin-top: 1em;
 }
 
-#main-tickets {
+.tickets {
   margin-top: 2em;
   width: 100%;
   display: flex;
@@ -91,6 +91,17 @@ body {
   padding: 0 1em;
   font-size: 1.5em;
   margin-bottom: 0.4em;
+}
+
+#submit-button {
+  background-color: #8498a7;
+  padding: 1em;
+  border: 0.1em solid black;
+  cursor: pointer;
+  margin-top: 1.5em;
+  margin-bottom: 3em;
+  font-size: 1.6em;
+  border-radius: 0.3em;
 }
 
 
@@ -113,6 +124,10 @@ body {
     width: 13%;
   }
 
+  .ticket {
+    width: 85%;
+  }
+
 }
 
 /* Smartphone optimazation */
@@ -123,6 +138,9 @@ body {
     font-size: 1.5em;
   }
 
+  .ticket {
+    width: 95%;
+  }
 
   .input-number-decrement,
   .input-number-increment {

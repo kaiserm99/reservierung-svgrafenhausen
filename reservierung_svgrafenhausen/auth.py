@@ -1,3 +1,4 @@
+from reservierung_svgrafenhausen.models import Event, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -69,7 +70,7 @@ def sign_up():
             # Login the user and therefore create a remembered session  
             login_user(new_user, remember=True)
 
-            flash('Account created!', category='success')
+            flash('Sie haben erfolgreich einen Account erstellt!', category='success')
 
             return redirect(url_for('views.reservierung'))
 
@@ -81,10 +82,15 @@ def sign_up():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
+        
                 login_user(user, remember=True)
-
-                return redirect(url_for('views.reservierung'))
+                
+                if current_user.admin:
+                    return redirect(url_for('auth.admin'))
+                
+                else:
+                    flash('Sie haben sich erfolgreich angemeldet!', category='success')
+                    return redirect(url_for('views.reservierung'))
 
             else:
                 flash('Das eingegebene Passwort ist falsch. Versuchen Sie es erneut!', category='error')
@@ -100,5 +106,22 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
-    print("Test")
+    flash('Sie haben sich erfolgreich abgemeldet!', category='success')
     return redirect(url_for('auth.sign_up'))
+
+
+@auth.route('/admin')
+@login_required
+def admin():
+    if current_user.admin is False:
+        return redirect(url_for('auth.sign_up'))
+
+    events = []
+    tmp_events = Event.query.all()
+
+    for event in tmp_events:
+        user = User.query.get(event.user_id)
+        events.append((event, user))
+    
+
+    return render_template("admin.html", user=current_user, events=events)

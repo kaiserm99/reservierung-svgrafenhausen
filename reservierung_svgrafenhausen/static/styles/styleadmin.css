@@ -1,0 +1,55 @@
+.headline {
+  margin-top: 1em;
+}
+
+.tickets {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+  
+.ticket {
+  width: 70%;
+  height: 5em;
+  background-color: rgb(228, 228, 228);
+  border: 0.1em solid black;
+  border-radius: 0.6em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  font-size: 1.5em;
+  margin-bottom: 0.4em;
+}
+
+#red-dot {
+  margin-left: 2em;
+}
+
+/* Smartphone optimazation */
+@media only screen and (max-width: 900px) {
+
+  .ticket {
+    width: 85%;
+  }
+
+  #red-dot {
+    margin-left: 1em;
+  }
+
+}
+
+/* Smartphone optimazation */
+@media only screen and (max-width: 750px) {
+
+  .ticket {
+    width: 95%;
+  }
+
+  #red-dot {
+    margin-left: 0;
+  }
+
+}
