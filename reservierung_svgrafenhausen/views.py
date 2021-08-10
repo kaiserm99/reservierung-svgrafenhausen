@@ -78,3 +78,17 @@ def deleteTicket():
             db.session.commit()
 
             decrement_seat_number(-1)
+
+
+@views.route('/undo-ticket', methods=['POST'])
+@login_required
+def undoTicket():
+    if current_user.admin:
+        data = json.loads(request.data)
+        if 'ticket-id' in data:
+            ticket_id = data['ticket-id']
+            event = Event.query.get(ticket_id)
+            event.confirmed = False
+            db.session.commit()
+
+            decrement_seat_number(-1)

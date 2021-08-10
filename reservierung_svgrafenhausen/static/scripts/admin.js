@@ -15,3 +15,11 @@ function deleteTicket(id) {
   })
   .then((resp) => document.location.reload(true));
 }
+
+function undoTicket(id) {
+  fetch("/undo-ticket", {
+    method: "POST",
+    body: JSON.stringify({ "ticket-id": id }),
+  })
+  .then((resp) => document.location.reload(true));
+}

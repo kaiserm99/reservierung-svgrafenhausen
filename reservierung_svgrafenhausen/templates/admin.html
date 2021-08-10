@@ -21,7 +21,8 @@
         <div class="ticket">
           <span>{{ user.first_name }} {{ user.last_name }}, ID #{{ event.id }}</span>
           <div>
-            <span>&#128994;</span>
+            <button onclick='undoTicket("{{ event.id }}")'>Rückgängig</button>
+            <span class="dot">&#128994;</span>
             <span>Bestätigt</span>
           </div>
         </div>
@@ -31,7 +32,7 @@
           <div>
             <button onclick='confirmTicket("{{ event.id }}")'>Freigeben</button>
             <button onclick='deleteTicket("{{ event.id }}")'>Löschen</button>
-            <span id="red-dot">&#128308;</span>
+            <span class="dot">&#128308;</span>
             <span>Nicht bestätigt</span>
           </div>
         </div>
