@@ -20,10 +20,16 @@ def setup():
     from reservierung_svgrafenhausen.models import User
     from reservierung_svgrafenhausen import db
 
-    admin1 = User(first_name="SV", 
-                  last_name="Grafenhausen",
-                  email="549829493@svgrafenhausen.de",
-                  password=generate_password_hash("XXXXXX", method='sha256'),
+    f = open("secret.txt", "r")
+    first_name = f.readline().replace("\n", "")
+    last_name = f.readline().replace("\n", "")
+    email = f.readline().replace("\n", "")
+    password = f.readline().replace("\n", "")
+
+    admin1 = User(first_name=first_name, 
+                  last_name=last_name,
+                  email=email,
+                  password=generate_password_hash(password, method='sha256'),
                   admin=True)
 
     user1 = User.query.filter_by(email=admin1.email).first()
@@ -31,6 +37,9 @@ def setup():
     if user1 is None:    
         db.session.add(admin1)
         db.session.commit()
+
+    f.close()
+
 
 if not SERVER:
     application.run(debug=True)
