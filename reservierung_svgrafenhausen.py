@@ -2,11 +2,15 @@
 
 SERVER = False
 
+SECRET_PATH = "secret.txt"
+
 if SERVER:
     import sys
     import logging
     logging.basicConfig(stream=sys.stderr)
     sys.path.insert(0, "/var/www/reservierung_svgrafenhausen/")
+
+    SECRET_PATH = "/home/secret.txt"
 
 
 from reservierung_svgrafenhausen import create_app
@@ -20,7 +24,7 @@ def setup():
     from reservierung_svgrafenhausen.models import User
     from reservierung_svgrafenhausen import db
 
-    f = open("secret.txt", "r")
+    f = open(SECRET_PATH, "r")
     first_name = f.readline().replace("\n", "")
     last_name = f.readline().replace("\n", "")
     email = f.readline().replace("\n", "")
