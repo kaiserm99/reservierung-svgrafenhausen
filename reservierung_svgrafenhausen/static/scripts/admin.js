@@ -23,3 +23,11 @@ function undoTicket(id) {
   })
   .then((resp) => document.location.reload(true));
 }
+
+function sendEmail(user_id) {
+  fetch("/send-email", {
+    method: "POST",
+    body: JSON.stringify({ "user-id": user_id }),
+  })
+  .then((resp) => document.location.reload(true));
+}

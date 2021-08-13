@@ -1,4 +1,5 @@
-from reservierung_svgrafenhausen.models import Event, User
+from .models import Event, User
+from .useful_functions import send_email, create_qrcode
 from flask import Blueprint, render_template, flash, jsonify, request
 from flask_login import current_user, login_required
 from .getSeatNumber import get_seat_number, decrement_seat_number
@@ -53,7 +54,6 @@ def reservierung():
     return render_template("reservierung.html", user=current_user)
 
 
-
 @views.route('/confirm-ticket', methods=['POST'])
 @login_required
 def confirmTicket():
@@ -64,6 +64,10 @@ def confirmTicket():
             event = Event.query.get(ticket_id)
             event.confirmed = True
             db.session.commit()
+
+            return jsonify()
+
+    return False
 
 
 @views.route('/delete-ticket', methods=['POST'])
@@ -79,6 +83,10 @@ def deleteTicket():
 
             decrement_seat_number(-1)
 
+            return jsonify()
+
+    return False
+
 
 @views.route('/undo-ticket', methods=['POST'])
 @login_required
@@ -92,3 +100,27 @@ def undoTicket():
             db.session.commit()
 
             decrement_seat_number(-1)
+
+            return jsonify()
+
+    return False
+
+@views.route('/send-email', methods=['POST'])
+@login_required
+def sendEmail():
+    if current_user.admin:
+        data = json.loads(request.data)
+        if 'user-id' in data:
+            user_id = data["user-id"]
+            user = User.query.get(user_id)
+
+            send_email(user)
+
+            return jsonify()
+    
+    return False
+
+
+@views.route('/email')
+def email():
+    return render_template("email.html")

@@ -116,12 +116,12 @@ def admin():
     if current_user.admin is False:
         return redirect(url_for('auth.sign_up'))
 
-    events = []
-    tmp_events = Event.query.all()
-
-    for event in tmp_events:
-        user = User.query.get(event.user_id)
-        events.append((event, user))
     
+    result = []
+    tmp_users = User.query.all()
 
-    return render_template("admin.html", user=current_user, events=events)
+    for user in tmp_users:
+        result.append((user, user.events))
+
+
+    return render_template("admin.html", user=current_user, result=result)

@@ -16,27 +16,33 @@
   <h1 class="headline">Alle Tickets:</h1>
 
   <div class="tickets">
-    {% for event, user in events %}
-      {% if event.confirmed %}
-        <div class="ticket">
-          <span>{{ user.first_name }} {{ user.last_name }}, ID #{{ event.id }}</span>
-          <div>
-            <button onclick='undoTicket("{{ event.id }}")'>Rückgängig</button>
-            <span class="dot">&#128994;</span>
-            <span>Bestätigt</span>
+    {% for user, events in result %}
+      <div class="user-apply">
+        <h1>{{ user.first_name }} {{ user.last_name }}:</h1>
+        <button onclick='sendEmail("{{ user.id }}")'>Sende E-Mail</button>
+      </div>
+      {% for event in events %}
+        {% if event.confirmed %}
+          <div class="ticket">
+            <span>ID #{{ event.id }}, {{ event.created_date }}</span>
+            <div>
+              <button onclick='undoTicket("{{ event.id }}")'>Rückgängig</button>
+              <span class="dot">&#128994;</span>
+              <span>Bestätigt</span>
+            </div>
           </div>
-        </div>
-      {% else %}
-        <div class="ticket">
-          <span>{{ user.first_name }} {{ user.last_name }}, {{ event.created_date }}, ID #{{ event.id }}</span>
-          <div>
-            <button onclick='confirmTicket("{{ event.id }}")'>Freigeben</button>
-            <button onclick='deleteTicket("{{ event.id }}")'>Löschen</button>
-            <span class="dot">&#128308;</span>
-            <span>Nicht bestätigt</span>
+        {% else %}
+          <div class="ticket">
+            <span>ID #{{ event.id }}, {{ event.created_date }}</span>
+            <div>
+              <button onclick='confirmTicket("{{ event.id }}")'>Freigeben</button>
+              <button onclick='deleteTicket("{{ event.id }}")'>Löschen</button>
+              <span class="dot">&#128308;</span>
+              <span>Nicht bestätigt</span>
+            </div>
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+      {% endfor %}
     {% endfor %}
   </div>
   {% endif %}

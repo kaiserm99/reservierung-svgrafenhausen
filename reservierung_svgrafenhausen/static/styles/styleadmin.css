@@ -28,6 +28,13 @@
   margin-left: 2em;
 }
 
+.user-apply {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
 /* Smartphone optimazation */
 @media only screen and (max-width: 900px) {
 
