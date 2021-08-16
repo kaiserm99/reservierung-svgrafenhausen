@@ -8,6 +8,8 @@ import json
 
 views = Blueprint('views', __name__)
 
+PRICE = 14
+
 
 @views.route('/get-seat', methods=['POST'])
 def getSeatId():
@@ -38,7 +40,11 @@ def submitTickets():
         db.session.add(new_event)
 
     db.session.commit()
-    flash(f"Ihnen wurden {ticket_count} Tickets vorgemerkt!", category='success')
+
+    if ticket_count == 1:
+        flash(f"Ihnen wurde 1 Ticket vorgemerkt!", category='success')
+    else:
+        flash(f"Ihnen wurden {ticket_count} Tickets vorgemerkt!", category='success')
 
     decrement_seat_number(ticket_count)
 
@@ -49,7 +55,14 @@ def submitTickets():
 @views.route('/reservierung', methods=['GET', 'POST'])
 @login_required
 def reservierung():
-    return render_template("reservierung.html", user=current_user)
+    user = User.query.get(current_user.id)
+    
+    ticket_count = 0
+    for event in user.events:
+        if not event.confirmed:
+            ticket_count += 1
+
+    return render_template("reservierung.html", user=current_user, ticket_count=ticket_count, ticket_price=ticket_count * PRICE)
 
 
 @views.route('/confirm-ticket', methods=['POST'])

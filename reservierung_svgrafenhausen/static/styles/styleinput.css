@@ -7,6 +7,38 @@ body {
   margin-top: calc(var(--nav-height) + 2em);
 }
 
+.confirm-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: #dfdfdf;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 1em;
+  font-size: 1.6em;
+  margin-bottom: 3em;
+  margin-top: 1em;
+  hyphens: auto;
+}
+
+.confirm-account {
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+.confirm-account span {
+  text-decoration: underline;
+}
+
+.tg-wrap {
+  margin-top: 0.4em;
+}
+
+.confirm-text {
+  margin-top: 0.5em;
+  text-align: center;
+}
 
 .input-main {
   margin-top: 0.5em;
@@ -93,6 +125,15 @@ body {
   margin-bottom: 0.4em;
 }
 
+.main-underline {
+  margin-top: 1em;
+  padding-top: 2em;
+  text-align: center;
+  width: 75%;
+  border-top: 0.2em solid #000;
+  font-size: 1.6em;
+}
+
 #submit-button {
   background-color: #8498a7;
   padding: 1em;
@@ -128,6 +169,14 @@ body {
     width: 85%;
   }
 
+  .confirm-main {
+    width: 80%;
+  }
+
+  .main-underline {
+    width: 90%;
+  }
+
 }
 
 /* Smartphone optimazation */
@@ -142,9 +191,23 @@ body {
     width: 95%;
   }
 
+  .main-underline {
+    width: 100%;
+  }
+
   .input-number-decrement,
   .input-number-increment {
     width: 15%;
   }
 
+  .confirm-main {
+    width: 95%;
+  }
+
+}
+
+@media only screen and (max-width: 550px) {
+  .confirm-account {
+    font-size: 0.9em;
+  }
 }

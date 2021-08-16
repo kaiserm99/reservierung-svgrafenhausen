@@ -14,6 +14,52 @@
 
 {% block content %}
 
+  {% if ticket_count > 0 %}
+    <div id="confirm-main" class="confirm-main">
+      <h3 style="text-align: center;">Achtung: Ihre Zahlung ist noch nicht eingeangen!</h3>
+      <p class="confirm-text">
+        {% if ticket_count == 1 %}
+          Um die Reservierung vollständig abzuschließen, senden Sie den Betrag von <b>{{ ticket_price }}</b>€ ({{ ticket_count }} Ticket) an das folgende Konto.
+        {% else %}
+          Um die Reservierung vollständig abzuschließen, senden Sie den Betrag von <b>{{ ticket_price }}</b>€ ({{ ticket_count }} Tickets) an das folgende Konto.
+        {% endif %}
+      </p> <br>
+      <div>
+        <div class="confirm-account">
+          <span>Reservierungskonto:</span>
+          <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{border-color:black;border-style:none;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg th{border-color:black;border-style:none;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg .tg-p8sp{border-color:inherit;font-size:20px;text-align:center;vertical-align:top}
+            .tg .tg-eqm3{border-color:inherit;font-size:20px;text-align:left;vertical-align:top}
+            @media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}.tg .tg-eqm3{font-size: 18px;} .tg .tg-p8sp{font-size: 18px;} }</style>
+            <div class="tg-wrap"><table class="tg">
+            <tbody>
+              <tr>
+                <td class="tg-p8sp">IBAN:</td>
+                <td class="tg-eqm3">DE05680512070000337253</td>
+              </tr>
+              <tr>
+                <td class="tg-p8sp">Konto:</td>
+                <td class="tg-eqm3">SOLADES1BND</td>
+              </tr>
+              <tr>
+                <td class="tg-p8sp">Stichwort:</td>
+                <td class="tg-eqm3">{{ user.first_name }} {{ user.last_name }}:{{ ticket_count }}</td>
+              </tr>
+            </tbody>
+            </table></div>
+        </div>
+      </div> <br>
+      <p class="confirm-text">
+        Beachten Sie bitte die Anzahl der Tickets, die evlt. schon überwiesen wurden.
+      </p>
+    </div>
+  {% endif %}
+
   <h1>Anzahl auswählen:</h1>
 
   <div class="input-main">
@@ -26,6 +72,10 @@
   
   <div id="main-tickets" class="tickets">
 
+  </div>
+
+  <div class="main-underline">
+    Aktueller Gesamtbetrag: <b id="main-price">0</b>€
   </div>
 
   <div>
