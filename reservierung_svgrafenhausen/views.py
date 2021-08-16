@@ -1,5 +1,5 @@
 from .models import Event, User
-from .useful_functions import send_email, create_qrcode
+from .useful_functions import send_email
 from flask import Blueprint, render_template, flash, jsonify, request
 from flask_login import current_user, login_required
 from .getSeatNumber import get_seat_number, decrement_seat_number
@@ -22,6 +22,12 @@ def getSeatId():
 def submitTickets():
     data = json.loads(request.data)
     ticket_count = data['ticket-count']
+
+    seat_number = get_seat_number()
+
+    if ticket_count > seat_number:
+        flash(f"Es sind leider nur noch {seat_number} Sitzplätze verfügbar. Passen Sie ihre Anzahl an!", category='error')
+        return jsonify(False)
 
     # To be completley sure that no one will change this number
     if ticket_count < 1 or ticket_count > 10:

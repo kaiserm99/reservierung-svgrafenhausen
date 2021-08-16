@@ -21,11 +21,48 @@
 
 {% block content %}
 
+<h1 id="main-number-title" >Noch <span id="seat-number">{{ seat_number }}</span> freie Sitzplätze!</h1>
+
   <div class="main-flyer-wrapper"> 
     <img class="main-flyer" src="https://reservierung.svgrafenhausen.de/static/img/flyer.png" alt="Flyer">
+    <div class="main-how-wrapper">
+      <h1>Wie reserviere ich meine Tickets?</h1>
+      <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+        .tg td{border-color:black;border-style:none;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:black;border-style:none;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-eqm3{border-color:inherit;font-size:20px;text-align:left;vertical-align:top}
+        .tg .tg-60hs{font-size:20px;text-align:left;vertical-align:top}
+        @media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style>
+        <div class="tg-wrap"><table class="tg">
+        <tbody>
+          <tr>
+            <td class="tg-eqm3">1.</td>
+            <td class="tg-eqm3">Registrieren</td>
+          </tr>
+          <tr>
+            <td class="tg-eqm3">2.</td>
+            <td class="tg-eqm3">Anzahl an Tickets auswählen</td>
+          </tr>
+          <tr>
+            <td class="tg-eqm3">3.</td>
+            <td class="tg-eqm3">Gesamter Betrag überweisen</td>
+          </tr>
+          <tr>
+            <td class="tg-60hs">4.</td>
+            <td class="tg-60hs">Bei Zahlungseingan Bestätigung per E-Mail erhalten</td>
+          </tr>
+          <tr>
+            <td class="tg-60hs">5.</td>
+            <td class="tg-60hs">Fertig!</td>
+          </tr>
+        </tbody>
+        </table></div>
+      <h2>Achtung: Tickets sind NUR nach Zahlungseingan gültig!</h2>
+    </div>
   </div>
-
-  <h1>Noch <span id="seat-number">{{ seat_number }}</span> freie Sitzplätze!</h1>
   
   <div class="main-login">
     <form class="form-register" method="POST">
