@@ -17,6 +17,19 @@ body {
   color: red;
 }
 
+.main-flyer-wrapper {
+  width: 50%;
+  margin-bottom: 2em;
+}
+
+.main-flyer {
+  width: 100%;
+  margin: auto;
+  border-radius: 1em;
+}
+
+
+
 .main-login {
   width: 50%;
   margin: auto;
@@ -190,6 +203,10 @@ body {
     padding: 2em;
   }
 
+  .main-flyer-wrapper {
+    width: 80%;
+  }
+
 }
 
 /* Smartphone optimazation */
@@ -201,6 +218,10 @@ body {
 
   .form-register {
     padding: 1em;
+  }
+
+  .main-flyer-wrapper {
+    width: 95%;
   }
 
 }

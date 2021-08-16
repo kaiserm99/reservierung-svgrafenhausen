@@ -98,13 +98,13 @@ a[x-apple-data-detectors] {{
           <td align="center" style="padding:0;Margin:0"> 
            <table bgcolor="#ffffff" class="es-header-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px"> 
              <tr> 
-              <td align="left" style="padding:20px;Margin:0"> 
+              <td align="left" style="padding-top:20px;padding-bottom:5px;Margin:0"> 
                <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                  <tr> 
                   <td class="es-m-p0r" valign="top" align="center" style="padding:0;Margin:0;width:560px"> 
                    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px;font-size:0px"><img src="https://lyyrsw.stripocdn.email/content/guids/CABINET_887f48b6a2f22ad4fb67bc2a58c0956b/images/93351617889024778.png" alt="Logo" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;font-size:12px" width="200" title="Logo"></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:0px;font-size:0px"><img src="https://reservierung.svgrafenhausen.de/static/img/banner.jpeg" alt="Logo" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;font-size:12px" width="250" title="Logo"></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -175,7 +175,21 @@ a[x-apple-data-detectors] {{
                  </tr> 
                </table> 
                <!--[if mso]></td></tr></table><![endif]--></td> 
-             </tr> 
+             </tr>
+
+             <tr> 
+              <td align="left" style="Margin:0;padding-bottom:20px;padding-top:0px;padding-left:20px;padding-right:20px"> 
+               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+                 <tbody><tr> 
+                  <td align="center" valign="top" style="padding:0;Margin:0;width:560px"> 
+                   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+                     <tbody><tr> 
+                      <td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Bitte <strong>drucken</strong> Sie diese E-Mail aus und bringen Sie diese mit zum Einlass. Alternativ reicht auch die E-Mail mit den sichtbaren QR-Code(s) auf dem Smartphone.</p></td> 
+                     </tr> 
+                   </tbody></table></td> 
+                 </tr> 
+               </tbody></table></td> 
+             </tr>
              """
 
     for id, event in enumerate(user.events):
@@ -224,7 +238,7 @@ a[x-apple-data-detectors] {{
                   <td align="left" style="padding:0;Margin:0;width:560px"> 
                    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><a name="felix.gatti@web.de" href="mailto:felix.gatti@web.de" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#5C68E2;font-size:14px"></a><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Bei weiteren Fragen melden Sie sich bitte an Felix Gatti (felix.gatti@web.de) oder gerne auch telefonisch unter: +49 (0) 1523 7875541<br></p></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><a name="felix.gatti@web.de" href="mailto:felix.gatti@web.de" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#5C68E2;font-size:14px"></a><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Bei weiteren Fragen melden Sie sich bitte an Felix Gatti (felix.gatti@web.de) oder gerne auch telefonisch unter: +49 (0) 1523 / 7875541<br></p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -279,7 +293,7 @@ a[x-apple-data-detectors] {{
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
-    message['Subject'] = 'Reservierungsbestätigung - Mein Leben auf Ballhöhe (Urs Meier) - SV Grafenhausen'
+    message['Subject'] = 'Reservierungsbestätigung - Mein Leben auf Ballhöhe - SVG'
     
     message.attach(MIMEText(html, 'html'))
 
