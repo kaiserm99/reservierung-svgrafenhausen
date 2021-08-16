@@ -29,5 +29,5 @@ function sendEmail(user_id) {
     method: "POST",
     body: JSON.stringify({ "user-id": user_id }),
   })
-  .then((resp) => document.location.reload(true));
+  .then((resp) => window.location.href = "/admin");
 }

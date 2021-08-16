@@ -26,6 +26,12 @@ def submitTickets():
         flash("Der gewünschte Wert ist nicht zwischen einem (1) und zehn (10) Tickets oder keine Zahl!", category='error')
         return jsonify(False)
 
+    user = User.query.get(current_user.id)
+
+    if len(user.events) + ticket_count > 10:
+        flash("Sie haben schon die maximale Anzahl an Tickets gebucht. Wenden Sie sich an Felix Gatti (felix.gatti@web.de)!", category='error')
+        return jsonify(0)
+
     
     for _ in range(ticket_count):
         new_event = Event(confirmed=False, user_id=current_user.id)
@@ -33,16 +39,8 @@ def submitTickets():
 
     db.session.commit()
     flash(f"Ihnen wurden {ticket_count} Tickets vorgemerkt!", category='success')
-    print("Fertig")
-
-    all_events = Event.query.all()
-
-    for event in all_events:
-        user = User.query.get(event.user_id)
-        print(f"{event} {user.first_name}")
 
     decrement_seat_number(ticket_count)
-
 
     return jsonify(ticket_count)
 
