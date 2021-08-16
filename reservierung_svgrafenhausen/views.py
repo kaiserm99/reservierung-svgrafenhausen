@@ -114,7 +114,11 @@ def sendEmail():
             user_id = data["user-id"]
             user = User.query.get(user_id)
 
-            send_email(user)
+            try:
+                send_email(user)
+                flash("E-Mail wurde erfolgreich gesendet", category='success')
+            except:
+                flash("ACHTUNG! E-Mail konnte nicht gesendet werden!", category='error')
 
             return jsonify()
     
