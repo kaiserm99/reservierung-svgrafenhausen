@@ -52,7 +52,7 @@
           </tr>
           <tr>
             <td class="tg-60hs">4.</td>
-            <td class="tg-60hs">Bei Zahlungseingan Bestätigung per E-Mail erhalten</td>
+            <td class="tg-60hs">Bestätigung per E-Mail bei Zahlungseingang</td>
           </tr>
           <tr>
             <td class="tg-60hs">5.</td>
@@ -60,11 +60,12 @@
           </tr>
         </tbody>
         </table></div>
-      <h2>Achtung: Tickets sind NUR nach Zahlungseingan gültig!</h2>
+      <h2>Achtung: Tickets sind NUR nach Zahlungseingang gültig!</h2>
     </div>
   </div>
   
   <div class="main-login">
+
     <form class="form-register" method="POST">
 
       <div class="title">Wilkommen</div>
@@ -107,11 +108,16 @@
       </div>
 
     </form>
-
-    <form id="form-login" class="form-register form-login" method="POST">
-      <div class="title">Wilkommen</div>
-      <div class="subtitle">Bitte melden Sie sich an!</div>
-
+    
+    {% if seat_number > 0 %}
+      <form id="form-login" class="form-register form-login" method="POST">
+        <div class="title">Wilkommen</div>
+        <div class="subtitle">Bitte melden Sie sich an!</div>
+    {% else %}
+    <form id="form-login" class="form-register form-login active" method="POST">
+      <div class="title">Aktuell gibt keine freien Platze mehr!</div>
+      <div class="subtitle">Melden Sie sich an, um ihre vorhandene Buchung zu checken!</div>
+    {% endif %}
       <div class="input-container ic1">
         <input class="input" type="email" name="email" placeholder="E-Mail Adresse" />
         <div class="cut cut-short"></div>
@@ -125,10 +131,11 @@
       </div>
 
       <button type="text" class="submit">Anmelden</button>
-
-      <div class="footer">
-        Noch nicht registriert? Dann drücken Sie <span id="switch-login" class="switch">hier</span>!
-      </div>
+      {% if seat_number > 0 %}
+        <div class="footer">
+          Noch nicht registriert? Dann drücken Sie <span id="switch-login" class="switch">hier</span>!
+        </div>
+      {% endif %}
 
     </form>
 

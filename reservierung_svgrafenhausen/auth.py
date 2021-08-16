@@ -99,7 +99,7 @@ def sign_up():
 
     s = get_seat_number()
 
-    return render_template("home.html", seat_number=s, user=current_user)
+    return render_template("home.html", seat_number=int(s), user=current_user)
 
 
 @auth.route('/logout')
