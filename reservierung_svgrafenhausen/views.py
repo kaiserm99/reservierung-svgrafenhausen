@@ -23,7 +23,7 @@ def submitTickets():
     data = json.loads(request.data)
     ticket_count = data['ticket-count']
 
-    seat_number = get_seat_number()
+    seat_number = int(get_seat_number())
 
     if ticket_count > seat_number:
         flash(f"Es sind leider nur noch {seat_number} Sitzplätze verfügbar. Passen Sie ihre Anzahl an!", category='error')

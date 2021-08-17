@@ -47,7 +47,7 @@
               </tr>
               <tr>
                 <td class="tg-eqm3">Stichwort:</td>
-                <td class="tg-eqm3">{{ user.first_name }} {{ user.last_name }}:{{ ticket_count }}</td>
+                <td class="tg-eqm3">{{ user.first_name }} {{ user.last_name }}:{{ user.id }}-{{ ticket_count }}</td>
               </tr>
             </tbody>
             </table></div>
@@ -59,29 +59,8 @@
     </div>
   {% endif %}
 
-  <h1>Anzahl auswählen:</h1>
-
-  <div class="input-main">
-    <span id="decrement"  class="input-number-decrement">–</span>
-    <input id="input-number" class="input-number" type="text" value="0" min="0" max="10">
-    <span id="increment" class="input-number-increment">+</span>
-  </div>
-
-  <h1 class="headline">Aktuelle Tickets:</h1>
-  
-  <div id="main-tickets" class="tickets">
-
-  </div>
-
-  <div class="main-underline">
-    Aktueller Gesamtbetrag: <b id="main-price">0</b>€
-  </div>
-
-  <div>
-    <button id="submit-button" onclick='submitTicketCount()'>Bestätigen</button>
-  </div>
-
   {% if user.events|length > 0 %}
+
     <h1 class="headline">Vorgemerkte Tickets:</h1>
 
     <div class="tickets">
@@ -106,10 +85,56 @@
       {% endfor %}
     </div>
 
-  {% endif %}
+    <h1 style="margin-top: 2em;">Weitere Tickes auswählen:</h1>
+
+    <div class="input-main">
+      <span id="decrement"  class="input-number-decrement">–</span>
+      <input id="input-number" class="input-number" type="text" value="0" min="0" max="10">
+      <span id="increment" class="input-number-increment">+</span>
+    </div>
+
+    <h1 class="headline">Aktuelle Tickets:</h1>
+    
+    <div id="main-tickets" class="tickets">
+
+    </div>
+
+    <div class="main-underline">
+      Aktueller Gesamtbetrag: <b id="main-price">0</b>€
+    </div>
+
+    <div>
+      <button id="submit-button" onclick='submitTicketCount()'>Bestätigen</button>
+    </div>
+
+
+  {% else %}
+
+    <h1>Anzahl auswählen:</h1>
+
+    <div class="input-main">
+      <span id="decrement"  class="input-number-decrement">–</span>
+      <input id="input-number" class="input-number" type="text" value="0" min="0" max="10">
+      <span id="increment" class="input-number-increment">+</span>
+    </div>
+
+    <h1 class="headline">Aktuelle Tickets:</h1>
+    
+    <div id="main-tickets" class="tickets">
+
+    </div>
+
+    <div class="main-underline">
+      Aktueller Gesamtbetrag: <b id="main-price">0</b>€
+    </div>
+
+    <div>
+      <button id="submit-button" onclick='submitTicketCount()'>Bestätigen</button>
+    </div>
+
+  {% endif %}    
 
 {% endblock %}
-
 
 {% block scripts %}
   <script type="text/javascript" src="{{ url_for('static', filename='scripts/input.js') }}"></script>
