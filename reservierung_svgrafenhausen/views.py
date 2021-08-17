@@ -27,19 +27,22 @@ def submitTickets():
 
     if ticket_count > seat_number:
         flash(f"Es sind leider nur noch {seat_number} Sitzplätze verfügbar. Passen Sie ihre Anzahl an!", category='error')
-        return jsonify(False)
+        return jsonify( status=False )
 
     # To be completley sure that no one will change this number
     if ticket_count < 1 or ticket_count > 10:
         flash("Der gewünschte Wert ist nicht zwischen einem (1) und zehn (10) Tickets oder keine Zahl!", category='error')
-        return jsonify(False)
+        return jsonify( status=False )
 
     user = User.query.get(current_user.id)
 
     if len(user.events) + ticket_count > 10:
-        flash("Sie haben schon die maximale Anzahl an Tickets gebucht. Wenden Sie sich an Felix Gatti (felix.gatti@web.de)!", category='error')
-        return jsonify(0)
+        flash("Sie haben schon die maximale Anzahl an Tickets gebucht. Wenden Sie sich an Felix Gatti (felix.gatti@web.de), um evtl. mehr Tickets zu buchen!", category='error')
+        return jsonify( status=False )
 
+    # If there are no bookings at all, save it
+    user.more_bookings = ( len(user.events) > 0 )
+        
     
     for _ in range(ticket_count):
         new_event = Event(confirmed=False, user_id=current_user.id)
@@ -54,7 +57,7 @@ def submitTickets():
 
     decrement_seat_number(ticket_count)
 
-    return jsonify(ticket_count)
+    return jsonify( status=True)
 
 
 
@@ -68,7 +71,9 @@ def reservierung():
         if not event.confirmed:
             ticket_count += 1
 
-    return render_template("reservierung.html", user=current_user, ticket_count=ticket_count, ticket_price=ticket_count * PRICE)
+    print(user.more_bookings)
+
+    return render_template("reservierung.html", user=current_user, ticket_count=ticket_count, ticket_price=ticket_count * PRICE, more_bookings=user.more_bookings)
 
 
 @views.route('/confirm-ticket', methods=['POST'])
@@ -100,6 +105,13 @@ def deleteTicket():
 
             decrement_seat_number(-1)
 
+            # Reset the more_bookings value if the user has no bookings
+            user = User.query.get(current_user.id)
+
+            if len(user.events) == 0:
+                user.more_bookings = False
+
+
             return jsonify()
 
     return False
@@ -117,6 +129,12 @@ def undoTicket():
             db.session.commit()
 
             decrement_seat_number(-1)
+
+            # Reset the more_bookings value if the user has no bookings
+            user = User.query.get(current_user.id)
+
+            if len(user.events) == 0:
+                user.more_bookings = False
 
             return jsonify()
 

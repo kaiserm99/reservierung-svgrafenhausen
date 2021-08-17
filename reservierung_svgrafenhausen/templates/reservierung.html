@@ -52,10 +52,12 @@
             </tbody>
             </table></div>
         </div>
-      </div> <br>
-      <p class="confirm-text">
-        Beachten Sie bitte die Anzahl der Tickets, die evlt. schon überwiesen wurden.
-      </p>
+      </div>
+      {% if more_bookings %}
+        <p id="confirm-text" class="confirm-text">
+          Beachten Sie bitte die Anzahl der Tickets, die evlt. schon überwiesen wurden.
+        </p>
+      {% endif %}
     </div>
   {% endif %}
 

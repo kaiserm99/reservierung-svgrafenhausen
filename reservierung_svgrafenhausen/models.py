@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(256))
     first_name = db.Column(db.String(256))
     last_name = db.Column(db.String(256))
+    more_bookings = db.Column(db.Boolean, unique=False, default=False)
     admin = db.Column(db.Boolean, unique=False, default=False)
     events = db.relationship('Event')
 
