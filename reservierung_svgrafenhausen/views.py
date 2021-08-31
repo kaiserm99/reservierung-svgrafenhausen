@@ -171,7 +171,7 @@ def addTicket():
             user = User.query.get(user_id)
 
             try:
-                new_event = Event(confirmed=False, user_id=current_user.id)
+                new_event = Event(confirmed=False, user_id=user_id.id)
                 db.session.add(new_event)
                 db.session.commit()
 

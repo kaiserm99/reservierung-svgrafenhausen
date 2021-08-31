@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils.functions import database_exists
 
-SERVER = False
+SERVER = True
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -29,7 +29,7 @@ def create_app():
 
     from .models import User
 
-    create_database(app)
+    # create_database(app)
 
     login_manager = LoginManager()
     login_manager.init_app(app)

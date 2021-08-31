@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-SERVER = False
+SERVER = True
 
 SECRET_PATH = "secret.txt"
 
