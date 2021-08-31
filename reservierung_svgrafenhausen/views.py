@@ -128,8 +128,6 @@ def undoTicket():
             event.confirmed = False
             db.session.commit()
 
-            decrement_seat_number(-1)
-
             # Reset the more_bookings value if the user has no bookings
             user = User.query.get(current_user.id)
 
@@ -139,6 +137,7 @@ def undoTicket():
             return jsonify()
 
     return False
+
 
 @views.route('/send-email', methods=['POST'])
 @login_required
@@ -152,11 +151,37 @@ def sendEmail():
             try:
                 send_email(user)
                 flash("E-Mail wurde erfolgreich gesendet", category='success')
+
             except:
                 flash("ACHTUNG! E-Mail konnte nicht gesendet werden!", category='error')
+            
 
             return jsonify()
     
+    return False
+
+
+@views.route('/add-ticket', methods=['POST'])
+@login_required
+def addTicket():
+    if current_user.admin:
+        data = json.loads(request.data)
+        if 'user-id' in data:
+            user_id = data["user-id"]
+            user = User.query.get(user_id)
+
+            try:
+                new_event = Event(confirmed=False, user_id=current_user.id)
+                db.session.add(new_event)
+                db.session.commit()
+
+                decrement_seat_number(1)
+
+            except:
+                flash("ACHTUNG! Ticket konnte nicht hinzugefügt werden!", category='error')
+
+            return jsonify()
+
     return False
 
 

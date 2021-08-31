@@ -19,6 +19,7 @@
     {% for user, events in result %}
       <div class="user-apply">
         <h1>{{ user.first_name }} {{ user.last_name }}:</h1>
+        <button onclick='addTicket("{{ user.id }}")'>Ticket +</button>
         <button onclick='sendEmail("{{ user.id }}")'>Sende E-Mail</button>
       </div>
       {% for event in events %}

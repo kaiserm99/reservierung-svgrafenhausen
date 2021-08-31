@@ -31,3 +31,11 @@ function sendEmail(user_id) {
   })
   .then((resp) => window.location.href = "/admin");
 }
+
+function addTicket(user_id) {
+  fetch("/add-ticket", {
+    method: "POST",
+    body: JSON.stringify({ "user-id": user_id }),
+  })
+  .then((resp) => document.location.reload(true));
+}

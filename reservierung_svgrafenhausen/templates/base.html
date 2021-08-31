@@ -10,6 +10,17 @@
     {% block links %}
     <!-- Document related links -->
     {% endblock %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNM79RP8NX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TNM79RP8NX');
+    </script>
+
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
